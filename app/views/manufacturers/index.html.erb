@@ -1,0 +1,9 @@
+<% if @manufacturers.empty? %>
+  <%= flash[:notice] = "Nenhum fabricante cadastrado" %>
+<% end %>
+
+<% @manufacturers.each do |manufacturer| %>
+  <h1><%= link_to manufacturer.name, manufacturer %></h1>
+<% end %>
+
+<h3><%= link_to 'Voltar', root_path %></h3>
