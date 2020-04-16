@@ -1,0 +1,9 @@
+<% @subsidiaries.each do |subsidiary| %>
+  <h1><%= link_to subsidiary.name, subsidiary %></h1></br>
+<% end %>
+
+<% if @subsidiaries.empty? %>
+  <%= flash[:notice] = "Nenhuma filial cadastrada" %></br>
+<% end %>
+
+<h3> <%= link_to 'Voltar', root_path %></h3>
