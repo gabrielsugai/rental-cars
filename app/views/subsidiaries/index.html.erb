@@ -1,3 +1,5 @@
+<h3> <%= link_to 'Registrar nova filial', new_subsidiary_path %></h3>
+
 <% @subsidiaries.each do |subsidiary| %>
   <h1><%= link_to subsidiary.name, subsidiary %></h1></br>
 <% end %>
