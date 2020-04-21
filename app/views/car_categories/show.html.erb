@@ -2,3 +2,5 @@
 <h3>Diária: <%= number_to_currency(@car_categories.daily_rate) %></h3></br>
 <h3>Seguro: <%= number_to_currency(@car_categories.car_insurance) %></h3></br>
 <h3>Seguro de terceiros: <%= number_to_currency(@car_categories.third_party_insurance) %></h3>
+
+<%= link_to  "Voltar", car_categories_path %>

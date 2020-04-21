@@ -2,3 +2,9 @@
   <h1><%= link_to "Categoria #{c.name}", c %></h1></br>
   <h3>Diária: <%= number_to_currency(c.daily_rate) %></h3>
 <%end%>
+
+<% if @car_categories.empty? %>
+  <%= flash[:notice] = "Nenhuma categoria cadastrada!" %></br>
+<% end %>
+
+<%= link_to 'Voltar', root_path%>
