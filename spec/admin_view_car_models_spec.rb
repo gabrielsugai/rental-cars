@@ -31,14 +31,21 @@ feature 'Admin view car models' do
     #Arrange
     fiat = Manufacturer.create!(name: 'Fiat')
     cat_a = CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
-    
+    cat_e = CarCategory.create!(name:'E', daily_rate: 200.0, car_insurance: 90.0, third_party_insurance: 100.0)
 
-    CarModel.create!(name: 'Uno', year: 2020, manufacturer: fiat, motorization: '1.0', fuel_type: 'Flex', car_category: cat_a)
+    cm = CarModel.create!(name: 'Uno', year: 2020, manufacturer: fiat, motorization: '1.0', fuel_type: 'Flex', car_category: cat_a)
+
+    CarModel.create!(name: 'Toro', year: 2020, manufacturer: fiat, motorization: '2.0 Turbo', fuel_type: 'Diesel', car_category: cat_e)
 
     #Act
     visit root_path
     click_on 'Modelos de Carros'
-    click_on 'Ver Detalhes'
+
+    #Resolvendo ambiguidade -> click_on "details-#{cm.id}" ou find("a#details-#{cm.id}").click()
+    #Ou \/ 
+    within("tr#car-model-#{cm.id}") do
+      click_on 'Ver Detalhes'
+    end
 
     #Assert
     expect(page).to have_content('Uno')
@@ -48,5 +55,11 @@ feature 'Admin view car models' do
     expect(page).to have_content('Combustível: Flex')
     expect(page).to have_content('Categoria: A')
     expect(page).to have_content('Diária: R$ 80,00')
+
+    expect(page).not_to have_content('Toro')
+    expect(page).not_to have_content('Motor: 2.0 Turbo')
+    expect(page).not_to have_content('Combustível: Diesel')
+    expect(page).not_to have_content('Categoria: E')
+    expect(page).not_to have_content('Diária: R$ 200,00')
   end
 end

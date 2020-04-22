@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <% @car_models.each do |cm| %>
-      <tr>
+      <tr id="car-model-<%= cm.id %>">
         <td><%= cm.manufacturer.name %></td>
         <td><%= cm.name %></td>
         <td><%= cm.year %></td>
