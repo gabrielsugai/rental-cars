@@ -3,4 +3,10 @@
 <h3>Seguro: <%= number_to_currency(@car_categories.car_insurance) %></h3></br>
 <h3>Seguro de terceiros: <%= number_to_currency(@car_categories.third_party_insurance) %></h3>
 
+<h2>Modelos de carro</h3>
+<% @car_categories.car_models.each do |car_model| %>
+  <%= link_to car_model.name, car_model %>
+<% end %>
+
 <%= link_to  "Voltar", car_categories_path %>
+
