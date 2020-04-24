@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'Admin view subsidiaries' do
   scenario 'successfully' do
-    Subsidiary.create!(name: 'GCars', cnpj: '123456789', address: 'Rua curva, 123')
-    Subsidiary.create!(name: 'SCars', cnpj: '987654321', address: 'Rua reta, 321')
+    Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
+    Subsidiary.create!(name: 'SCars', cnpj: '84.243.263/0001-11', address: 'Rua reta, 321')
 
     visit root_path
     click_on 'Filiais'
@@ -13,19 +13,19 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and view details' do
-    Subsidiary.create!(name: 'GCars', cnpj: '123456789', address: 'Rua curva, 123')
-    Subsidiary.create!(name: 'SCars', cnpj: '987654321', address: 'Rua reta, 321')
+    Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
+    Subsidiary.create!(name: 'SCars', cnpj: '84.243.263/0001-11', address: 'Rua reta, 321')
 
     visit root_path
     click_on 'Filiais'
     click_on 'GCars'
 
     expect(page).to have_content('GCars')
-    expect(page).to have_content('123456789')
+    expect(page).to have_content('74.303.466/0001-00')
     expect(page).to have_content('Rua curva, 123')
 
     expect(page).not_to have_content('SCars')
-    expect(page).not_to have_content('987654321')
+    expect(page).not_to have_content('84.243.263/0001-11')
     expect(page).not_to have_content('Rua reta, 321')
   end
 
@@ -37,8 +37,7 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to home page' do
-    Subsidiary.create!(name: 'GCars', cnpj: '123456789', address: 'Rua curva, 123')
-    Subsidiary.create!(name: 'SCars', cnpj: '987654321', address: 'Rua reta, 321')
+    Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
 
     visit root_path
     click_on 'Filiais'
@@ -48,8 +47,7 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to subsidiaries page' do
-    Subsidiary.create!(name: 'GCars', cnpj: '123456789', address: 'Rua curva, 123')
-    Subsidiary.create!(name: 'SCars', cnpj: '987654321', address: 'Rua reta, 321')
+    Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
 
     visit root_path
     click_on 'Filiais'
