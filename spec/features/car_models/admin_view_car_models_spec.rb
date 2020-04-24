@@ -24,7 +24,12 @@ feature 'Admin view car models' do
   end
 
   scenario 'no car models' do
-    
+    #Act
+    visit root_path
+    click_on 'Modelos de Carros'
+
+    #Assert
+    expect(page).to have_content('Nenhum modelo cadastrado.')
   end
 
   scenario 'and view details' do
@@ -61,5 +66,32 @@ feature 'Admin view car models' do
     expect(page).not_to have_content('Combustível: Diesel')
     expect(page).not_to have_content('Categoria: E')
     expect(page).not_to have_content('Diária: R$ 200,00')
+  end
+
+  scenario 'and return to index' do
+    
+    visit root_path
+    click_on 'Modelos de Carros'
+
+    click_on "Voltar"
+    
+    expect(current_path).to eq root_path
+  end
+
+  scenario 'view details, and return to models' do
+    #Arrange
+    fiat = Manufacturer.create!(name: 'Fiat')
+    cat_a = CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
+    cm = CarModel.create!(name: 'Uno', year: 2020, manufacturer: fiat, motorization: '1.0', fuel_type: 'Flex', car_category: cat_a)
+
+    #Act
+    visit root_path
+    click_on 'Modelos de Carros'
+    click_on 'Ver Detalhes'
+
+    click_on 'Voltar'
+
+    #Assert
+    expect(current_path).to eq car_models_path
   end
 end
