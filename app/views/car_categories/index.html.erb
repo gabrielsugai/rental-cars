@@ -1,3 +1,4 @@
+<%= link_to 'Registrar nova categoria', new_car_category_path %>
 <% @car_categories.each do |c| %>
   <h1><%= link_to "Categoria #{c.name}", c %></h1></br>
   <h3>Diária: <%= number_to_currency(c.daily_rate) %></h3>
