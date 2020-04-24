@@ -7,9 +7,31 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    <header>
+      <center><h1>Rental Cars</h1></center>
+    </header>
+    <center>
+    <nav style="background-color:green;">
+         <%= link_to 'Fabricantes', manufacturers_path %>&nbsp;&nbsp;&nbsp;
+         <%= link_to 'Filiais', subsidiaries_path %>&nbsp;&nbsp;&nbsp;
+         <%= link_to 'Categorias de carros', car_categories_path %>&nbsp;&nbsp;&nbsp;
+         <%= link_to 'Modelos de Carros', car_models_path%>
+
+    </nav>
+    </center>
+    
+    <main>
     <%= yield %>
+    </main>
+
+    <footer><center><h5>RentalCars - TreinaDev 3</br>
+                Gabriel Sugai</br>
+                <a href="github.com/gabrielsugai">GitHub</a></h5></center></footer>
+
   </body>
 </html>
+

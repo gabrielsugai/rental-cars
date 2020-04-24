@@ -1,11 +1,12 @@
-<%= link_to 'Registrar nova categoria', new_car_category_path %>
+<%= link_to 'Registrar nova categoria', new_car_category_path %> </br>
+</br>
 <% @car_categories.each do |c| %>
   <h1><%= link_to "Categoria #{c.name}", c %></h1></br>
   <h3>Diária: <%= number_to_currency(c.daily_rate) %></h3>
 <%end%>
-
+</br>
 <% if @car_categories.empty? %>
   <%= flash[:notice] = "Nenhuma categoria cadastrada!" %></br>
 <% end %>
-
+</br>
 <%= link_to 'Voltar', root_path%>
