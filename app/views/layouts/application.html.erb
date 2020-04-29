@@ -20,11 +20,16 @@
          <%= link_to 'Filiais', subsidiaries_path %>&nbsp;&nbsp;&nbsp;
          <%= link_to 'Categorias de carros', car_categories_path %>&nbsp;&nbsp;&nbsp;
          <%= link_to 'Modelos de Carros', car_models_path%>
-
+        <%if user_signed_in? %>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Entrar', new_user_session_path%>
+        <% end %>
     </nav>
     </center>
     
     <main>
+    <%= flash[:notice]%>
     <%= yield %>
     </main>
 
