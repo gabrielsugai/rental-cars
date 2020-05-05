@@ -1,0 +1,5 @@
+<h1>Clientes Cadastrados</h1>
+
+<% @customers.each do |customer| %>
+  <%= link_to customer.name, customer %>
+<%end%>

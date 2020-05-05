@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'Admin register rental' do
-  xscenario 'successfully' do
+  scenario 'successfully' do
     customer = Customer.create!(name: 'Joaozin', 
-                               document: '185.972.440-03', 
+                               cpf: '185.972.440-03', 
                                email: 'teste@teste.com.br')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, 
                                        car_insurance: 100, 
