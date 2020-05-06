@@ -4,8 +4,10 @@ class CustomersController < ApplicationController
     @customers = Customer.all
   end
 
-  def show
-    @customer = Customer.find(params[:id])
+  def search
+    #nome exato @customers = Customer.where(name: params[:q])
+    @customers = Customer.where('name LIKE ?', "%#{params[:q]}%")
+    render :index
   end
 
 end
