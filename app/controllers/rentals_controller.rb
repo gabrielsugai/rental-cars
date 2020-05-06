@@ -1,6 +1,7 @@
 class RentalsController < ApplicationController
   
   def index
+    @rentals = Rental.all
   end
 
   def new
@@ -8,15 +9,16 @@ class RentalsController < ApplicationController
     @customers = Customer.all
     @car_categories = CarCategory.all 
   end
-
-  def show
-    @rental = Rental.find(params[:id])
-  end
   
   def create
     @rental = Rental.new(rental_params)
     @rental.save
-    redirect_to @rental
+    redirect_to rentals_path
+  end
+
+  def search
+    @q = params[:q]
+    @rental = Rental.find_by(code: @q.upcase)
   end
 
   private
