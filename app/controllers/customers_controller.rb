@@ -10,4 +10,14 @@ class CustomersController < ApplicationController
     render :index
   end
 
+  def new
+    @customer = Customer.new
+  end
+
+  def create
+    @customer = Customer.new(params.require(:customer).permit(:name, :cpf, :email))
+    @customer.save
+    redirect_to customers_path
+  end
+
 end

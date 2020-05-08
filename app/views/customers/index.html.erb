@@ -1,11 +1,13 @@
 
-<h1>Clientes</h1>
+<h1>Clientes Cadastrados</h1>
 
 <%= form_with url: search_customers_path, method: :get do |f| %>
   <%= f.label :q, 'Busca' %>
   <%= f.search_field :q %>
   <%= f.submit 'Buscar' %>
 <% end %>
+
+<%= link_to 'Cadastrar Cliente', new_customer_path %>
 
 <table>
   <thead>
