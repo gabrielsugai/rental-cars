@@ -1,0 +1,13 @@
+<h1>Frota de carros</h1>
+
+<%= link_to 'Registrar novo carro', new_car_path %></br>
+
+<%= @cars.each do |car| %>
+  <div>
+  <h3>Modelo: <%= car.car_model.name %></h3>
+  <p>Placa: <%= car.license_plate %></p>
+  <p>Cor: <%= car.color %></p>
+  <p>Km: <%= car.milage %></p>
+  <p>Filial: <%= car.subsidiary.name %></p>
+  </div>
+<% end %>

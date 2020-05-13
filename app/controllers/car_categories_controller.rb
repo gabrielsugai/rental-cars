@@ -27,5 +27,4 @@ class CarCategoriesController < ApplicationController
 end
 
 #TODO: Editar categorias
-#TODO: Criar model Car
 #TODO: Validar valores de car category

@@ -1,0 +1,25 @@
+<%= form_with(model: @cars, local: true) do |f| %>
+  <div>
+  <%= f.label :car_model_id, 'Modelo' %>
+  <%= f.collection_select :car_model_id, @car_models, :id, :name %>
+  </div>
+  <div>
+  <%= f.label :license_plate, 'Placa' %>
+  <%= f.text_field :license_plate %>
+  </div>
+  <div>
+  <%= f.label :color, 'Cor'%>
+  <%= f.text_field :color %>
+  </div>
+  <div>
+  <%= f.label :milage, 'Km' %>
+  <%= f.text_field :milage %>
+  </div>
+  <div>
+  <%= f.label :subsidiary_id, 'Filial' %>
+  <%= f.collection_select :subsidiary_id, @subsidiaries, :id, :name %>
+  </div>
+  <div>
+  <%= f.submit 'Enviar' %>
+  </div>
+<% end %>
