@@ -4,6 +4,8 @@ feature 'Admin register car models' do
   scenario 'successfully' do
     manufacturer = Manufacturer.create!(name: 'Fiat')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 100, third_party_insurance: 100)
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Modelos de Carros'
@@ -26,6 +28,8 @@ feature 'Admin register car models' do
   end
 
   scenario 'and fill in all fields' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     visit new_car_model_path
     fill_in 'Ano', with: ''
     click_on 'Enviar'
@@ -36,6 +40,10 @@ feature 'Admin register car models' do
     expect(page).to have_content('Combustível não pode ficar em branco')
     expect(page).to have_content('Fabricante é obrigatório(a)')
     expect(page).to have_content('Categoria é obrigatório(a)')
+  end
+
+  scenario 'and link canot be found' do
+    expect(page).not_to have_link('Modelos de Carros')
   end
 
 end

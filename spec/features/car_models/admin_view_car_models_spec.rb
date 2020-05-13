@@ -10,6 +10,9 @@ feature 'Admin view car models' do
 
     CarModel.create!(name: 'Ka', year: 2020, manufacturer: ford, motorization: '1.0', fuel_type: 'Flex', car_category: category)
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
+
     #Act
     visit root_path
     click_on 'Modelos de Carros'
@@ -24,6 +27,8 @@ feature 'Admin view car models' do
   end
 
   scenario 'no car models' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     #Act
     visit root_path
     click_on 'Modelos de Carros'
@@ -33,6 +38,8 @@ feature 'Admin view car models' do
   end
 
   scenario 'and view details' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     #Arrange
     fiat = Manufacturer.create!(name: 'Fiat')
     cat_a = CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
@@ -69,7 +76,8 @@ feature 'Admin view car models' do
   end
 
   scenario 'and return to index' do
-    
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de Carros'
 
@@ -79,6 +87,8 @@ feature 'Admin view car models' do
   end
 
   scenario 'view details, and return to models' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     #Arrange
     fiat = Manufacturer.create!(name: 'Fiat')
     cat_a = CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
@@ -93,5 +103,9 @@ feature 'Admin view car models' do
 
     #Assert
     expect(current_path).to eq car_models_path
+  end
+
+  scenario 'and link canot be found' do
+    expect(page).not_to have_link('Modelos de Carros')
   end
 end

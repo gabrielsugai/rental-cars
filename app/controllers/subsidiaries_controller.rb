@@ -22,3 +22,5 @@ class SubsidiariesController < ApplicationController
     params.require(:subsidiary).permit(:name, :cnpj, :address)
   end
 end
+
+#TODO: edit filial

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin view car categories' do
   scenario 'successfully' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
     CarCategory.create!(name:'B', daily_rate: 100.0, car_insurance: 60.0, third_party_insurance: 70.0)
     
@@ -15,6 +17,8 @@ feature 'Admin view car categories' do
   end
 
   scenario 'and view details' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     manufacturer = Manufacturer.create!(name: 'Fiat')
     car_category = CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
 
@@ -34,7 +38,8 @@ feature 'Admin view car categories' do
   end
 
   scenario 'and no categories are created' do
-    
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     visit root_path
     click_on 'Categorias de carros'
 
@@ -42,7 +47,8 @@ feature 'Admin view car categories' do
   end
 
   scenario 'view categories and return to index' do
-
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     visit root_path
     click_on 'Categorias de carros'
     
@@ -56,7 +62,9 @@ feature 'Admin view car categories' do
   scenario 'view details and return to categories' do
     CarCategory.create!(name:'A', daily_rate: 80.0, car_insurance: 40.0, third_party_insurance: 50.0)
     CarCategory.create!(name:'B', daily_rate: 100.0, car_insurance: 60.0, third_party_insurance: 70.0)
-    
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
+
     visit root_path
     click_on 'Categorias de carros'
     click_on 'Categoria A'
@@ -78,11 +86,20 @@ feature 'Admin view car categories' do
     argos = CarModel.create!(name: 'Argos', year: 2020, manufacturer: manufacturer, motorization: '1.0', fuel_type: 'Flex',
        car_category: car_category_b)
     
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
+
     visit root_path
+    
     click_on 'Categorias de carros'
     click_on 'Categoria A'
 
     expect(page).to have_link('Mobi', href: car_model_path(mobi))
     expect(page).not_to have_link('Argos', href: car_model_path(argos))
   end
+
+  scenario 'link cant be found' do
+    expect(page).not_to have_link('Categorias de carros')
+  end
+
 end

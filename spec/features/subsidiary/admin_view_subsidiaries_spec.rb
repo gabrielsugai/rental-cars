@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin view subsidiaries' do
   scenario 'successfully' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
     Subsidiary.create!(name: 'SCars', cnpj: '84.243.263/0001-11', address: 'Rua reta, 321')
 
@@ -13,6 +15,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and view details' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
     Subsidiary.create!(name: 'SCars', cnpj: '84.243.263/0001-11', address: 'Rua reta, 321')
 
@@ -30,6 +34,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and no subsidiaries are created' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     visit root_path
     click_on 'Filiais'
 
@@ -37,6 +43,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to home page' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
 
     visit root_path
@@ -47,6 +55,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to subsidiaries page' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as user, scope: :user
     Subsidiary.create!(name: 'GCars', cnpj: '74.303.466/0001-00', address: 'Rua curva, 123')
 
     visit root_path

@@ -25,3 +25,7 @@ class CarCategoriesController < ApplicationController
     params.require(:car_category).permit(:name, :daily_rate, :car_insurance, :third_party_insurance)
   end
 end
+
+#TODO: Editar categorias
+#TODO: Criar model Car
+#TODO: Validar valores de car category

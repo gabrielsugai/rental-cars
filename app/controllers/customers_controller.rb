@@ -21,3 +21,5 @@ class CustomersController < ApplicationController
   end
 
 end
+
+# TODO: Validar dados do cliente
