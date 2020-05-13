@@ -14,4 +14,5 @@ class CarsController < ApplicationController
     @cars.save
     redirect_to cars_path
   end
+  # TODO: validates Placa deve ser unica, km >=0, todos os campos obrigatorios
 end

@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      rental:
+        one: Locação
+        other: Locações
+    attributes:
+      rental/status:
+        scheduled: Agendada
+        ongoing: Em progresso
+      rental:
